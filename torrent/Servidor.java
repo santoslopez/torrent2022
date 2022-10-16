@@ -13,7 +13,7 @@ import java.net.ServerSocket;
 
 public class Servidor{
 
-    private static final int numeroPuerto = 9080;
+    private static final int numeroPuerto = 9081;
 
     public static void main(String[] args){
 
@@ -26,18 +26,23 @@ public class Servidor{
             while(true){
                 // Espera a que un cliente se conecte
                 socket = server.accept();
-                System.out.println("Cliente conectado");
+                
+                //System.out.println("Cliente conectado");
+                
+                
                 DataInputStream entrada = new DataInputStream(socket.getInputStream());
                 DataOutputStream salida = new DataOutputStream(socket.getOutputStream());
 
-                salida.writeUTF("¿Cual es tu nombre?");
-                String nombre = entrada.readUTF();
+                String respuestaSaludo = "From: servidor\n"+"Type: WELCOME";
+                salida.writeUTF(respuestaSaludo);
+                String respuestaCliente = entrada.readUTF();
                 
-                ServidorHilo servidorH = new ServidorHilo(entrada, salida, nombre);
+                ServidorHilo servidorH = new ServidorHilo(entrada, salida,respuestaCliente);
                 servidorH.start();
+                System.out.println(respuestaCliente);
 
-                System.out.println("Conexio con " + nombre + " creado.");
-
+                //System.out.println("Conexio con " + nombre + " creado.");
+                //System.out.println("Conexion creado con el cliente: ");
                 //salida.writeUTF("Hola " + nombre + " bienvenido al servidor");
                 //socket.close();
 

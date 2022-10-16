@@ -10,13 +10,13 @@ import java.util.logging.Logger;
 public class Cliente{
 
     private  static String HOST = "127.0.0.1";
-    private static final int PUERTO = 9080;
+    private static final int PUERTO = 9081;
 
     public static void main(String[] args){
         
         try{
-            Scanner escaner = new Scanner(System.in);
-            escaner.useDelimiter("\n");
+            //Scanner escaner = new Scanner(System.in);
+            //escaner.useDelimiter("\n");
 
             Socket socket = new Socket(HOST,PUERTO);
 
@@ -30,8 +30,10 @@ public class Cliente{
             String mensaje=entrada.readUTF();
             System.out.println(mensaje);
 
-            String nombre = escaner.next();
-            salida.writeUTF(nombre);
+            //String nombre = escaner.next();
+            // Saludo inicial
+            String saludoInicial = "From: " + HOST+"\n"+"Type: HELLO";
+            salida.writeUTF(saludoInicial);
 
             ClienteHilo clienteH = new ClienteHilo(entrada, salida);
             clienteH.start();

@@ -7,10 +7,7 @@ JC = javac
 	$(JC) $(JFLAGS) $*.java
 
 CLASSES = \
-		  ServidorHilo.java \
-		  Servidor.java \
-		  ClienteHilo.java \
-		  Cliente.java
+		  *.java
 
 default: classes
 
