@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.util.logging.Level;
 // logger
 import java.util.logging.Logger;
+
+
 public class Cliente{
 
     private  static String HOST = "127.0.0.1";
@@ -39,6 +41,9 @@ public class Cliente{
             clienteH.start();
             // para que no haga cosas raras
             clienteH.join();
+
+           
+
 
         }catch(Exception e){
             //System.out.println("Error: " + e.getMessage());
